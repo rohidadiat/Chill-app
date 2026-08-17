@@ -1,0 +1,15 @@
+.login-bg {
+    min-height: 100vh;
+    background-image: url("../assets/backgrounds/login-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.register-bg {
+    min-height: 100vh;
+    background-image: url("../assets/backgrounds/register-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
