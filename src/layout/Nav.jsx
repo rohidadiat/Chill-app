@@ -1,14 +1,14 @@
 import { useState } from "react";
 import logo from "../assets/icon/Logo.png";
 import profile from "../assets/icon/profile.png";
-import { User, LogOut, ChevronDown, Star } from "lucide-react";
+import { User, LogOut, ChevronDown } from "lucide-react";
 
 const Nav = () => {
   const [isOpen, setisOpen] = useState(false);
 
   return (
     <nav className="left-0 right-0 top-0 z-50">
-      <div className="mx-auto flex h-16 bg-black items-center justify-between px-4 lg:px-10">
+      <div className="mx-auto flex h-16 bg-black items-center justify-between px-4 md:px-10">
         <div className="flex items-center gap-3 md:gap-10">
           <a href="/" className="text-xl font-black tracking-tight text-white">
             <img
@@ -93,8 +93,8 @@ const Nav = () => {
                     href="#"
                     className="flex w-full items-center gap-3 hover:text-blue-500"
                   >
-                    <Star size={16} />
-                    <p className="text-sm">Ubah Premium</p>
+                    <span className="text-lg">★</span>
+                    <p className="text-sm"> Ubah Premium</p>
                   </a>
                 </li>
                 <li>
