@@ -2,8 +2,13 @@ import React from "react";
 import Nav from "../layout/Nav";
 import Footer from "../layout/Footer";
 import MovieEmbedded from "../components/MovieEmbedded";
-import MovieList from "../components/ContinueWatching";
+import MovieList from "../components/MovieList";
 import { movies } from "../data/movies";
+
+const ContinueWatchingMovies = movies.slice(0, 6);
+const TopAndSerriesMovies = movies.slice(5, 14);
+const TrandingMovies = movies.slice(8, 16);
+const NewReleaseMovies = movies.slice(9, 16);
 
 const Home = () => {
   const movie = {
@@ -14,11 +19,20 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col ">
       <Nav />
-      <main className=" flex-1 ">
+      <main className="flex-1 ">
         <MovieEmbedded movie={movie} />
-        <MovieList movies={movies} />
+        <div className="grid gap-5 md:px-5">
+          {/* Continue Watching Movies Section*/}
+          <MovieList movies={ContinueWatchingMovies} mode={"Continue"} />
+          {/* Top Film & Serries */}
+          <MovieList movies={TopAndSerriesMovies} mode={"Movie"} />
+          {/* Trending Film */}
+          <MovieList movies={TrandingMovies} mode={"Movie"} />
+          {/* New Release */}
+          <MovieList movies={NewReleaseMovies} mode={"Movie"} />
+        </div>
       </main>
       <Footer />
     </div>
