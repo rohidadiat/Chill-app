@@ -305,7 +305,6 @@ const MovieList = ({ movies, mode = "Movie" }) => {
             clearTimeout(hideTimeoutRef.current);
           }}
           onMouseLeave={hidePreviewDelayed}
-          ContinueWatching={true}
         />
       )}
     </section>

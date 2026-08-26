@@ -208,7 +208,7 @@ export const movies = [
     progress: 45,
     episodes: "10 Episode",
     genres: ["Drama", "Laga", "Fiksi"],
-    ageRating: "1*+",
+    ageRating: "18+",
     episode: "Episode 1",
     newEpisode: true,
     topTen: false,

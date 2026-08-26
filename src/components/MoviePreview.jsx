@@ -7,7 +7,6 @@ const MoviePreview = ({
   position,
   onMouseEnter,
   onMouseLeave,
-  ContinueWatching = false,
   mode,
 }) => {
   if (!movie) return null;
@@ -110,16 +109,32 @@ const MoviePreview = ({
           </button>
         </div>
 
-        {movie.type != "Film" && (
+        {mode === "Movie" && (
+          <div className="flex items-center gap-3 mt-4 mb-3 md:my-5">
+            <div className="">
+              <p className="text-xs font-semibold text-white/70 rounded-full bg-gray-600 px-2 py-1">
+                {movie.ageRating}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold text-white/90">
+                {movie.type == "Series" ? movie.episodes : movie.duration}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {mode === "Continue" && movie.type != "Film" && (
           <div className="mb-3">
             <h3 className="text-sm font-semibold text-white">
-              "{movie.episode ?? "Episode 1"}"
+              "{movie.episode}"
             </h3>
           </div>
         )}
 
         {/* PROGRESS */}
-        {ContinueWatching && (
+        {mode === "Continue" && (
           <div className="mb-3 flex justify-between items-center w-full text-gray-300">
             <div className="h-1 w-full rounded-full bg-white/20">
               <div
