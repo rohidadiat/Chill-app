@@ -25,13 +25,29 @@ const Home = () => {
         <MovieEmbedded movie={movie} />
         <div className="grid gap-5 md:px-5">
           {/* Continue Watching Movies Section*/}
-          <MovieList movies={ContinueWatchingMovies} mode={"Continue"} />
+          <MovieList
+            movies={ContinueWatchingMovies}
+            mode={"Continue"}
+            title={"Melanjutkan Tontonan Film"}
+          />
           {/* Top Film & Serries */}
-          <MovieList movies={TopAndSerriesMovies} mode={"Movie"} />
+          <MovieList
+            movies={TopAndSerriesMovies}
+            mode={"Movie"}
+            title={"Top Rating Film dan Series Hari ini"}
+          />
           {/* Trending Film */}
-          <MovieList movies={TrandingMovies} mode={"Movie"} />
+          <MovieList
+            movies={TrandingMovies}
+            mode={"Movie"}
+            title={"Film Tranding"}
+          />
           {/* New Release */}
-          <MovieList movies={NewReleaseMovies} mode={"Movie"} />
+          <MovieList
+            movies={NewReleaseMovies}
+            mode={"Movie"}
+            title={"Rilis Baru"}
+          />
         </div>
       </main>
       <Footer />

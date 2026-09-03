@@ -7,7 +7,7 @@ import MovieCard from "./MovieCard";
 
 const PREVIEW_WIDTH = 300;
 
-const MovieList = ({ movies, mode = "Movie" }) => {
+const MovieList = ({ movies, mode = "Movie", title }) => {
   const sliderRef = useRef(null);
   const hideTimeoutRef = useRef(null);
   const isScrollingRef = useRef(false);
@@ -187,9 +187,7 @@ const MovieList = ({ movies, mode = "Movie" }) => {
 
   return (
     <section className="w-full px-6 py-6 md:px-10">
-      <h2 className="mb-4 text-lg font-semibold text-white">
-        Melanjutkan Tonton Film
-      </h2>
+      <h2 className="mb-4 text-lg font-semibold text-white">{title}</h2>
 
       <div className="relative">
         {/* LEFT BUTTON */}
