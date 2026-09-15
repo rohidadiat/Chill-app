@@ -1,7 +1,9 @@
 import { useState } from "react";
 import logo from "../assets/icon/Logo.png";
-import profile from "../assets/icon/profile.png";
+import profileImg from "../assets/icon/profile.png";
 import { User, LogOut, ChevronDown } from "lucide-react";
+import Profile from "../pages/Profile";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   const [isOpen, setisOpen] = useState(false);
@@ -10,7 +12,11 @@ const Nav = () => {
     <nav className="left-0 right-0 top-0 z-50">
       <div className="mx-auto flex h-16 bg-black items-center justify-between px-4 md:px-10">
         <div className="flex items-center gap-3 md:gap-10">
-          <a href="/" className="text-xl font-black tracking-tight text-white">
+          <Link
+            path="/"
+            to="/"
+            className="text-xl font-black tracking-tight text-white"
+          >
             <img
               src={logo}
               alt="logo"
@@ -21,7 +27,7 @@ const Nav = () => {
               alt="logo"
               className="h-4 w-auto object-contain block md:hidden"
             />
-          </a>
+          </Link>
 
           <ul className="items-center gap-3 md:gap-8 flex">
             <li>
@@ -62,7 +68,7 @@ const Nav = () => {
             <div className="flex h-8 w-8 items-center justify-center">
               <span className="text-sm font-bold">
                 <img
-                  src={profile}
+                  src={profileImg}
                   alt="profile"
                   className="rounded-full h-6 md:h-7 w-auto object-contain"
                 />
@@ -80,13 +86,14 @@ const Nav = () => {
               {/* Profile */}
               <ul className="grid gap-4 ">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    path="/profile"
+                    to="/profile"
                     className="flex w-full items-center gap-3 hover:text-blue-500"
                   >
                     <User size={16} />
                     <p className="text-sm">Profile Saya</p>
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a

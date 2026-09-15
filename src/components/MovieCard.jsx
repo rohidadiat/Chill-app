@@ -7,7 +7,7 @@ const MovieCard = ({ movie, onHover }) => {
       className="
         group
         relative
-        h-[30vh]
+        h-[25vh]
         md:h-80
         lg:h-100
         w-full
