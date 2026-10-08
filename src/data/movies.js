@@ -80,7 +80,7 @@ export const movies = [
     ageRating: "16+",
     episode: "Episode 18",
     newEpisode: false,
-    topTen: false,
+    topTen: true,
     type: "Series",
     poster: blue_lock_poster,
   },

@@ -16,7 +16,7 @@ function App() {
     email: "example@gmail.com",
     password: "example",
     profilePhoto: "",
-    isPremium: true,
+    isPremium: false,
     expiredPremium: "2026-12-31",
     playList: DaftarSaya,
   });

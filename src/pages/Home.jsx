@@ -7,7 +7,7 @@ import { movies } from "../data/movies";
 
 const ContinueWatchingMovies = movies.slice(0, 6);
 const TopAndSerriesMovies = movies.slice(5, 14);
-const TrandingMovies = movies.slice(8, 16);
+const TrandingMovies = movies.filter((item) => item.topTen);
 const NewReleaseMovies = movies.filter((item) => item.newEpisode);
 
 const Home = () => {
