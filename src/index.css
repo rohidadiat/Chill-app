@@ -12,6 +12,10 @@ body {
     color: white;
 }
 
+button {
+    cursor: pointer;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

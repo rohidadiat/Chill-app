@@ -11,7 +11,19 @@ import profilePng from "/src/assets/icon/profile.png";
 import warningPng from "/src/assets/icon/warning.png";
 import MovieCard from "../components/MovieCard";
 
-const Profile = ({ profile, updateProfile }) => {
+import { movies } from "../data/movies";
+
+const Profile = ({ updateProfile }) => {
+  const profile = {
+    name: "Rohid Adiat Alma'arij",
+    email: "example@gmail.com",
+    password: "example",
+    profilePhoto: "",
+    isPremium: false,
+    expiredPremium: "2026-12-31",
+    playList: DaftarSaya,
+  };
+
   const MyPlayList = profile.playList.slice(0, 6);
 
   const handleSubmit = async (e) => {
