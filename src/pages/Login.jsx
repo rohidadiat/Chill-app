@@ -40,8 +40,8 @@ const Login = () => {
         title: "Login Gagal",
         text: error,
         confirmButtonText: "Coba Lagi",
-        confirmButtonColor: "#4f46e5",
-        background: "#181A1C",
+        confirmButtonColor: "#09147A",
+        background: "#111827",
         color: "#ffffff",
       });
 

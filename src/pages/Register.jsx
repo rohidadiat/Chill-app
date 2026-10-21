@@ -56,8 +56,8 @@ const Register = () => {
       title: "Pendaftaran Gagal",
       text: message,
       confirmButtonText: "Coba Lagi",
-      confirmButtonColor: "#4f46e5",
-      background: "#181A1C",
+      confirmButtonColor: "#09147A",
+      background: "#111827",
       color: "#ffffff",
     }).then(() => {
       setLocalError(null);

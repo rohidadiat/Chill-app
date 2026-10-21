@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updatePassword,
 } from "firebase/auth";
 import { auth, googleProvider } from "./firebase";
 import { ensureUserProfile } from "./users";
@@ -91,6 +92,16 @@ export async function loginWithGoogle() {
   });
   return { user, profile };
 }
+
+export const updateUserPassword = async (newPassword) => {
+  const currentUser = auth.currentUser;
+
+  if (!currentUser) {
+    throw new Error("Pengguna belum login.");
+  }
+
+  await updatePassword(currentUser, newPassword);
+};
 
 export function logout() {
   return signOut(auth);

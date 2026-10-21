@@ -9,7 +9,7 @@ const MovieCard = ({ movie, onHover }) => {
         relative
         h-[25vh]
         md:h-80
-        lg:h-100
+        lg:h-110
         w-full
         overflow-hidden
         rounded-md

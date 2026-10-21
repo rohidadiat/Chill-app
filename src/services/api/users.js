@@ -18,7 +18,10 @@ export async function getUserProfile(uid) {
 }
 
 /** Buat dokumen users/{uid} jika belum ada. Jika sudah ada, kembalikan apa adanya. */
-export async function ensureUserProfile(uid, { name = "", photoUrl = "" } = {}) {
+export async function ensureUserProfile(
+  uid,
+  { name = "", photoUrl = "" } = {},
+) {
   const existing = await getUserProfile(uid);
   if (existing) return existing;
 
@@ -26,7 +29,7 @@ export async function ensureUserProfile(uid, { name = "", photoUrl = "" } = {}) 
     name,
     photoUrl,
     isPremium: false,
-    expiredPremium: null,
+    expiredPremium: "",
   };
   await setDoc(usersRef(uid), data);
   return { id: uid, ...data };

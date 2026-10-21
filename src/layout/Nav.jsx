@@ -1,12 +1,15 @@
 import { useState } from "react";
 import logo from "../assets/icon/Logo.png";
-import profileImg from "../assets/icon/profile.png";
 import { User, LogOut, ChevronDown } from "lucide-react";
-import Profile from "../pages/Profile";
 import { Link } from "react-router-dom";
+import { emailToUsername } from "../services/api";
+
+import { useAuthStore } from "../store/useAuthStore";
 
 const Nav = () => {
   const [isOpen, setisOpen] = useState(false);
+  const { user, profile, logout, busy } = useAuthStore();
+  const handle = emailToUsername(user?.email);
 
   return (
     <nav className="left-0 right-0 top-0 z-50">
@@ -67,11 +70,18 @@ const Nav = () => {
           >
             <div className="flex h-8 w-8 items-center justify-center">
               <span className="text-sm font-bold">
-                <img
-                  src={profileImg}
-                  alt="profile"
-                  className="rounded-full h-6 md:h-7 w-auto object-contain"
-                />
+                {profile?.photoUrl ? (
+                  <img
+                    src={profile.photoUrl}
+                    alt="photoProfile"
+                    referrerPolicy="no-referrer"
+                    className="h-6 md:h-7 w-auto rounded-full object-contain"
+                  />
+                ) : (
+                  <div className="flex w-6 h-6 md:w-7 md:h-7 items-center justify-center rounded-full bg-indigo-100 text-center text-lg leading-none font-semibold text-indigo-700">
+                    {(profile?.name || handle || "?").charAt(0).toUpperCase()}
+                  </div>
+                )}
               </span>
             </div>
 
@@ -105,13 +115,17 @@ const Nav = () => {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="flex w-full items-center gap-3 hover:text-blue-500"
+                  <button
+                    type="button"
+                    onClick={logout}
+                    disabled={busy}
+                    className="flex w-full items-center gap-3 hover:text-blue-500 disabled:opacity-50"
                   >
                     <LogOut size={16} />
-                    <p className="text-sm">Keluar</p>
-                  </a>
+                    <p className="text-sm">
+                      {busy ? "Memproses..." : "Keluar"}
+                    </p>
+                  </button>
                 </li>
               </ul>
             </div>

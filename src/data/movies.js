@@ -31,6 +31,7 @@ import missing_poster from "../assets/poster/missing_poster.png";
 
 export const movies = [
   {
+    movieId: "chill_movie_1",
     title: "Don't Look Up",
     rating: "4.5/5",
     image: dont_look_up,
@@ -44,6 +45,7 @@ export const movies = [
     poster: dont_look_up_poster,
   },
   {
+    movieId: "chill_movie_2",
     title: "All Of Us Are Dead",
     rating: "4.8/5",
     image: all_of_us,
@@ -58,6 +60,7 @@ export const movies = [
     poster: all_of_us_poster,
   },
   {
+    movieId: "chill_movie_3",
     title: "The Batman",
     rating: "4.7/5",
     image: the_batman,
@@ -71,6 +74,7 @@ export const movies = [
     poster: the_batman_poster,
   },
   {
+    movieId: "chill_movie_4",
     title: "Blue Lock",
     rating: "4.6/5",
     image: blue_lock,
@@ -85,6 +89,7 @@ export const movies = [
     poster: blue_lock_poster,
   },
   {
+    movieId: "chill_movie_5",
     title: "A Man Called Otto",
     rating: "4.2/5",
     image: a_man_called_otto,
@@ -98,6 +103,7 @@ export const movies = [
     poster: a_man_called_otto_poster,
   },
   {
+    movieId: "chill_movie_6",
     title: "Suzume",
     rating: "4.0/5",
     image: suzume,
@@ -111,6 +117,7 @@ export const movies = [
     poster: suzume_poster,
   },
   {
+    movieId: "chill_movie_7",
     title: "Jurassic World Dominion",
     rating: "4.8/5",
     image: jursic_park,
@@ -124,6 +131,7 @@ export const movies = [
     poster: jursic_park_poster,
   },
   {
+    movieId: "chill_movie_8",
     title: "Sonic",
     rating: "4.5/5",
     image: sonic,
@@ -137,6 +145,7 @@ export const movies = [
     poster: sonic_poster,
   },
   {
+    movieId: "chill_movie_9",
     title: "Big Hero",
     rating: "4.2/5",
     image: big_hero,
@@ -150,6 +159,7 @@ export const movies = [
     poster: big_hero_poster,
   },
   {
+    movieId: "chill_movie_10",
     title: "The Tomorrow War",
     rating: "4.1/5",
     image: the_tomorrow_war,
@@ -163,6 +173,7 @@ export const movies = [
     poster: the_tomorrow_war_poster,
   },
   {
+    movieId: "chill_movie_11",
     title: "Ant-Man and the Wasp: Quantumania",
     rating: "4.3/5",
     image: quantumania,
@@ -176,6 +187,7 @@ export const movies = [
     poster: quantumania_poster,
   },
   {
+    movieId: "chill_movie_12",
     title: "Guardians Of The Galaxy",
     rating: "4.4/5",
     image: guardian_of_the_galaxy,
@@ -189,6 +201,7 @@ export const movies = [
     poster: guardian_of_the_galaxy_poster,
   },
   {
+    movieId: "chill_movie_13",
     title: "The Little Mermaid",
     rating: "4.8/5",
     image: the_little_mermaid,
@@ -202,6 +215,7 @@ export const movies = [
     poster: the_little_mermaid_poster,
   },
   {
+    movieId: "chill_movie_14",
     title: "Duty After School",
     rating: "4.6/5",
     image: duty_after_school,
@@ -216,6 +230,7 @@ export const movies = [
     poster: duty_after_school_poster,
   },
   {
+    movieId: "chill_movie_15",
     title: "Missing",
     rating: "4.7/5",
     image: missing,
