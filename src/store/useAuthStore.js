@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { onAuthStateChanged } from "firebase/auth";
+import { movies } from "../data/movies";
 
 import {
   auth,
@@ -16,6 +17,7 @@ import {
   getUserPlaylists,
   updatePlaylistProgress,
   deletePlaylist,
+  addPlaylist,
 } from "../services/api/playlistService";
 
 const errorMessage = (err) => {
@@ -102,6 +104,37 @@ export const useAuthStore = create((set, get) => ({
         set({ playlistLoading: false });
       }
     }
+  },
+
+  removeFromMyPlaylist: async (movieId) => {
+    const uid = get().user?.uid;
+
+    if (!uid) {
+      throw new Error("Silakan login terlebih dahulu.");
+    }
+
+    const playlistItem = get().myplaylist.find(
+      (item) => String(item.movieId) === String(movieId),
+    );
+
+    if (!playlistItem?.playlistId) {
+      throw new Error("ID record playlist tidak ditemukan.");
+    }
+
+    // Hapus record menggunakan ID MockAPI, misalnya "1"
+    await deletePlaylist(playlistItem.playlistId);
+
+    // Pastikan user belum berganti
+    if (get().user?.uid !== uid) return movieId;
+
+    // Hapus film dari Zustand menggunakan movieId
+    set((state) => ({
+      myplaylist: state.myplaylist.filter(
+        (item) => String(item.movieId) !== String(movieId),
+      ),
+    }));
+
+    return movieId;
   },
 
   // Sinkronisasi status login Firebase

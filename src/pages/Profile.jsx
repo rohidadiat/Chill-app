@@ -5,7 +5,6 @@ import { FileUp, Pencil } from "lucide-react";
 
 import MovieCard from "../components/MovieCard";
 
-import profilePng from "/src/assets/icon/profile.png";
 import warningPng from "/src/assets/icon/warning.png";
 
 import { useAuthStore } from "../store/useAuthStore";

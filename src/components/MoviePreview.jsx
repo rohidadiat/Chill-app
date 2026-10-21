@@ -1,6 +1,23 @@
 import React from "react";
+import { useState } from "react";
+import Swal from "sweetalert2";
+
 import { createPortal } from "react-dom";
-import { Play, Check, ChevronDown } from "lucide-react";
+import { Play, Check, ChevronDown, X } from "lucide-react";
+import { useAuthStore } from "../store/useAuthStore";
+
+const toast = Swal.mixin({
+  toast: true,
+  position: "top",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  background: "#111827",
+  color: "#ffffff",
+  customClass: {
+    popup: "swal-toast-custom",
+  },
+});
 
 const MoviePreview = ({
   movie,
@@ -9,7 +26,82 @@ const MoviePreview = ({
   onMouseLeave,
   mode,
 }) => {
+  const { user, addToMyPlaylist, removeFromMyPlaylist } = useAuthStore();
+  const [loading, setLoading] = useState(false);
+
   if (!movie) return null;
+
+  const handleAddPlaylist = async () => {
+    if (!user?.uid) {
+      toast.fire({
+        icon: "warning",
+        title: "Silakan login terlebih dahulu!",
+      });
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const result = await addToMyPlaylist(movie.movieId);
+
+      if (result?.alreadyExists) {
+        toast.fire({
+          icon: "warning",
+          title: result.message,
+        });
+        return;
+      }
+
+      toast.fire({
+        icon: "success",
+        title: "Film berhasil ditambahkan ke playlist!",
+      });
+    } catch (error) {
+      toast.fire({
+        icon: "error",
+        title:
+          error.response?.data?.message ||
+          error.message ||
+          "Gagal menambahkan film ke playlist!",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDeletePlaylist = async (playlistId) => {
+    const result = await Swal.fire({
+      title: "Hapus dari playlist?",
+      text: "Film ini akan dihapus dari playlist kamu.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Ya, hapus",
+      cancelButtonText: "Batal",
+      confirmButtonColor: "#09147A",
+      background: "#111827",
+      color: "#ffffff",
+    });
+
+    if (!result.isConfirmed) return;
+
+    try {
+      await removeFromMyPlaylist(playlistId);
+
+      toast.fire({
+        icon: "success",
+        title: "Film berhasil dihapus dari playlist!",
+      });
+    } catch (error) {
+      toast.fire({
+        icon: "error",
+        title:
+          error.response?.data?.message ||
+          error.message ||
+          "Gagal menghapus film dari playlist!",
+      });
+    }
+  };
 
   return createPortal(
     <div
@@ -68,9 +160,11 @@ const MoviePreview = ({
           >
             <Play size={14} fill="currentColor" />
           </button>
-
-          <button
-            className="
+          {mode === "Movie" && (
+            <button
+              onClick={handleAddPlaylist}
+              disabled={loading}
+              className="
               flex
               h-8
               w-8
@@ -84,9 +178,33 @@ const MoviePreview = ({
               hover:bg-white/30
               cursor-pointer
             "
-          >
-            <Check size={14} />
-          </button>
+            >
+              {loading ? "Menambahkan..." : <Check size={14} />}
+            </button>
+          )}
+
+          {mode === "Continue" && (
+            <button
+              onClick={() => handleDeletePlaylist(movie.movieId)}
+              disabled={loading}
+              className="
+              flex
+              h-8
+              w-8
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-white/40
+              bg-transparant
+              text-white
+              hover:bg-white/30
+              cursor-pointer
+            "
+            >
+              {loading ? "Menghapus..." : <X size={14} />}
+            </button>
+          )}
 
           <button
             className="
@@ -140,7 +258,7 @@ const MoviePreview = ({
               <div
                 className="h-full rounded-full bg-blue-500"
                 style={{
-                  width: `${movie.progress}%`,
+                  width: `${movie.progres}%`,
                 }}
               />
             </div>

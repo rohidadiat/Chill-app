@@ -5,12 +5,16 @@ import MovieEmbedded from "../components/MovieEmbedded";
 import MovieList from "../components/MovieList";
 import { movies } from "../data/movies";
 
+import { useAuthStore } from "../store/useAuthStore";
+
 const ContinueWatchingMovies = movies.slice(0, 6);
 const TopAndSerriesMovies = movies.slice(5, 14);
 const TrandingMovies = movies.filter((item) => item.topTen);
 const NewReleaseMovies = movies.filter((item) => item.newEpisode);
 
 const Home = () => {
+  const { myplaylist } = useAuthStore();
+
   const movie = {
     title: "Duty After School",
     description:
@@ -25,11 +29,14 @@ const Home = () => {
         <MovieEmbedded movie={movie} />
         <div className="grid gap-5 md:px-5">
           {/* Continue Watching Movies Section*/}
-          <MovieList
-            movies={ContinueWatchingMovies}
-            mode={"Continue"}
-            title={"Melanjutkan Tontonan Film"}
-          />
+          {myplaylist?.length > 0 && (
+            <MovieList
+              movies={myplaylist}
+              mode="Continue"
+              title="Melanjutkan Tontonan Film"
+            />
+          )}
+
           {/* Top Film & Serries */}
           <MovieList
             movies={TopAndSerriesMovies}

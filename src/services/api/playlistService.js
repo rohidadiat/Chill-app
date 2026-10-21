@@ -13,7 +13,6 @@ export const getUserPlaylists = async (uid) => {
 
     return playlists
       .map((playlist) => {
-        // Cocokkan movieId dari kedua sumber data
         const movie = movies.find(
           (item) => String(item.movieId) === String(playlist.movieId),
         );
@@ -23,7 +22,7 @@ export const getUserPlaylists = async (uid) => {
         return {
           ...movie,
           playlistId: playlist.id,
-          iduser: playlist.iduser,
+          uid: playlist.uid,
           movieId: playlist.movieId,
           progres: Number(playlist.progres) || 0,
         };
@@ -36,6 +35,33 @@ export const getUserPlaylists = async (uid) => {
 
     throw error;
   }
+};
+
+export const addPlaylist = async (uid, movieId, progres = 0) => {
+  if (!uid) {
+    throw new Error("UID pengguna tidak ditemukan.");
+  }
+
+  if (!movieId) {
+    throw new Error("ID movie tidak ditemukan.");
+  }
+
+  if (
+    typeof progres !== "number" ||
+    !Number.isFinite(progres) ||
+    progres < 0 ||
+    progres > 100
+  ) {
+    throw new Error("Progres harus berupa angka 0–100.");
+  }
+
+  const response = await api.post("/playlist", {
+    uid: uid,
+    movieId,
+    progres,
+  });
+
+  return response.data;
 };
 
 export const updatePlaylistProgress = async (playlistId, progres) => {
