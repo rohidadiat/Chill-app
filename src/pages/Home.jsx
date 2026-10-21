@@ -7,7 +7,6 @@ import { movies } from "../data/movies";
 
 import { useAuthStore } from "../store/useAuthStore";
 
-const ContinueWatchingMovies = movies.slice(0, 6);
 const TopAndSerriesMovies = movies.slice(5, 14);
 const TrandingMovies = movies.filter((item) => item.topTen);
 const NewReleaseMovies = movies.filter((item) => item.newEpisode);

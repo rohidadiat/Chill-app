@@ -195,43 +195,43 @@ const Profile = () => {
                 </div>
               )}
 
-            {!profile.isPremium ||
+            {(!profile?.isPremium ||
               !profile?.expiredPremium ||
-              (new Date(
+              new Date(
                 profile.expiredPremium.toDate?.() ?? profile.expiredPremium,
-              ) <= new Date() && (
-                <div className="w-full rounded-md bg-[#3D4142] p-4">
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center text-3xl">
-                      <img
-                        src={warningPng}
-                        alt="warning"
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-
-                    <div className="flex-1">
-                      <h2 className="text-xs font-semibold md:text-sm">
-                        Saat ini anda belum berlangganan
-                      </h2>
-
-                      <p className="mt-1 text-xs leading-relaxed text-gray-300 md:text-xs">
-                        Dapatkan Akses Tak Terbatas ke Ribuan Film dan Series
-                        Kesukaan Kamu!
-                      </p>
-                    </div>
+              ) <= new Date()) && (
+              <div className="w-full rounded-md bg-[#3D4142] p-4">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center text-3xl">
+                    <img
+                      src={warningPng}
+                      alt="warning"
+                      className="h-full w-full object-cover"
+                    />
                   </div>
 
-                  <div className="flex justify-end mt-2">
-                    <button
-                      type="button"
-                      className="whitespace-nowrap rounded-full bg-[#2F3334] px-3 py-1.5 text-xs font-medium hover:bg-gray-700 cursor-pointer"
-                    >
-                      Mulai Berlangganan
-                    </button>
+                  <div className="flex-1">
+                    <h2 className="text-xs font-semibold md:text-sm">
+                      Saat ini anda belum berlangganan
+                    </h2>
+
+                    <p className="mt-1 text-xs leading-relaxed text-gray-300">
+                      Dapatkan Akses Tak Terbatas ke Ribuan Film dan Series
+                      Kesukaan Kamu!
+                    </p>
                   </div>
                 </div>
-              ))}
+
+                <div className="mt-2 flex justify-end">
+                  <button
+                    type="button"
+                    className="cursor-pointer whitespace-nowrap rounded-full bg-[#2F3334] px-3 py-1.5 text-xs font-medium hover:bg-gray-700"
+                  >
+                    Mulai Berlangganan
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

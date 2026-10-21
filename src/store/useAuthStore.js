@@ -106,6 +106,61 @@ export const useAuthStore = create((set, get) => ({
     }
   },
 
+  addToMyPlaylist: async (movieId, progres = 0) => {
+    const uid = get().user?.uid;
+
+    if (!uid) {
+      throw new Error("Silakan login terlebih dahulu.");
+    }
+
+    // Periksa apakah movie sudah ada di playlist user
+    const alreadyExists = get().myplaylist.some(
+      (item) =>
+        String(item.movieId) === String(movieId) &&
+        String(item.iduser ?? item.uid) === String(uid),
+    );
+
+    if (alreadyExists) {
+      return {
+        alreadyExists: true,
+        message: "Movie sudah berada dalam daftar!",
+      };
+    }
+
+    // Tambahkan ke backend jika belum ada
+    const response = await addPlaylist(uid, movieId, progres);
+
+    // Pastikan user belum berganti
+    if (get().user?.uid !== uid) return response;
+
+    const selectedMovie = movies.find(
+      (item) => String(item.movieId) === String(movieId),
+    );
+
+    if (selectedMovie) {
+      set((state) => ({
+        myplaylist: [
+          ...state.myplaylist.filter(
+            (item) =>
+              !(
+                String(item.movieId) === String(movieId) &&
+                String(item.iduser ?? item.uid) === String(uid)
+              ),
+          ),
+          {
+            ...selectedMovie,
+            playlistId: response.id,
+            iduser: uid,
+            movieId,
+            progres: Number(response.progres ?? progres) || 0,
+          },
+        ],
+      }));
+    }
+
+    return response;
+  },
+
   removeFromMyPlaylist: async (movieId) => {
     const uid = get().user?.uid;
 
